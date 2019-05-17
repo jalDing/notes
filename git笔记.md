@@ -17,14 +17,17 @@
 - 大多数 Git 服务器都会选择使用 SSH 公钥来进行授权。系统中的每个用户都必须提供一个公钥用于授权，没有的话就要生成一个。生成公钥的过程在所有操作系统上都差不多。首先你要确认一下本机是否已经有一个公钥。
    
 #### 配置ssh keys
-- 先输入$ cd ~/.ssh   $ ls 命令查看是否有SSH 公钥看一下有没有id_rsa和id_rsa.pub(或者是id_dsa和id_dsa.pub之类成对的文件)，有 .pub 后缀的文件就是公钥，另一个文件则是密钥。
+- 先输入 cd ~/.ssh   
+- 然后 ls 命令查看是否有SSH 公钥看一下有没有id_rsa和id_rsa.pub(或者是id_dsa和id_dsa.pub之类成对的文件)，有 .pub 后缀的文件就是公钥，另一个文件则是密钥。
 
-- 如果没有(没有试过,我的有.pub后缀的文件)
-	输入$ ssh-keygen -t rsa -C "你的邮箱地址" 命令  然后按回车出现 Your public key has been saved in /home/you/.ssh/id_rsa.pub.The key fingerprint is: # 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db 你的邮箱地址代表秘钥生成
+- 如果没有
+	输入  ssh-keygen -t rsa -C "你的邮箱地址" 命令  出现 Your public key has been saved in /home/you/.ssh/id_rsa.pub.The key fingerprint is: # 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db 然后一直按回车直到出现 ssh-keygen -t rsa -C '1252766511@qq.com' 一大段代码
     
-- 有.pub后缀的文件直接输入,没有输入命令生成后输入$ cat ~/.ssh/id_rsa.pub 命令获得公钥 复制 
+- 然后输入命令(有.pub后缀的文件直接输入)  cat ~/.ssh/id_rsa.pub  命令获得公钥  复制 $ cat ~/.ssh/id_rsa.pub 下面的一大段代码
 
 - 返回GitHub 点击setting > ssh and GPS keys > New SSH key 将复制的公钥粘贴到Key里 title自己取名字然后点击add key
 
-- 完成后输入$ ssh -T git@github.com 命令验证是否可以正常工作   Hi xxx! You've successfully authenticated, but GitHub does not # provide shell access.表示设置成功
+- 完成后输入  ssh -T git@github.com 命令验证是否可以正常工作 出现The authenticity of host 'github.com (13.250.177.223)' can't be established.
+RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+Are you sure you want to continue connecting (yes/no)?一大段代码  输入yes  出现Hi xxx! You've successfully authenticated, but GitHub does not # provide shell access.表示设置成功
 
