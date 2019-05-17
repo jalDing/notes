@@ -21,13 +21,23 @@
 - 然后 ls 命令查看是否有SSH 公钥看一下有没有id_rsa和id_rsa.pub(或者是id_dsa和id_dsa.pub之类成对的文件)，有 .pub 后缀的文件就是公钥，另一个文件则是密钥。
 
 - 如果没有
-	输入  ssh-keygen -t rsa -C "你的邮箱地址" 命令  出现 Your public key has been saved in /home/you/.ssh/id_rsa.pub.The key fingerprint is: # 01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db 然后一直按回车直到出现 ssh-keygen -t rsa -C '1252766511@qq.com' 一大段代码
+	输入  ssh-keygen -t rsa -C "你的邮箱地址" 命令  出现" Your public key has been saved in /home/you/.ssh/id_rsa.pub.The key fingerprint is:xxx 然后一直按回车直到出现 ssh-keygen -t rsa -C '你的邮箱地址'" 一大段代码
     
 - 然后输入命令(有.pub后缀的文件直接输入)  cat ~/.ssh/id_rsa.pub  命令获得公钥  复制 $ cat ~/.ssh/id_rsa.pub 下面的一大段代码
 
 - 返回GitHub 点击setting > ssh and GPS keys > New SSH key 将复制的公钥粘贴到Key里 title自己取名字然后点击add key
 
-- 完成后输入  ssh -T git@github.com 命令验证是否可以正常工作 出现The authenticity of host 'github.com (13.250.177.223)' can't be established.
+- 完成后输入  ssh -T git@github+ .com 命令验证是否可以正常工作 出现The authenticity of host 'github.com (13.250.177.223)' can't be established.
 RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
 Are you sure you want to continue connecting (yes/no)?一大段代码  输入yes  出现Hi xxx! You've successfully authenticated, but GitHub does not # provide shell access.表示设置成功
 
+### 如果换了一台电脑连接github 远程库
++ 先配置ssh key 
++ 然后 输入命令  git clone git@github.com:jalDing/notes.git 这句命令clone单词后面的在github点击“Clone or download”,复制就可以了 出现 ![](img/2929097-2dc84d80c02e59df.png) 代表成功
++ 输入 ls 
++ 输入 cd 你的github上的仓库名
+##### 如果出现  Please tell me who you are  按照提示输入 
++ git config --global user.email "你的邮箱 回车
++ git config --global user.name "你的github用户名" 回车
+
++ 然后按照步骤 就可以正常上传你的文件了
